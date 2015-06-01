@@ -27,8 +27,18 @@ namespace HutongGames.PlayMaker.Actions
 		public FsmString name;
 		
 		[UIHint(UIHint.Variable)]
-		[Tooltip("The layer's name Hash")]
+		[Tooltip("The layer's name Hash. Obsolete in Unity 5, use fullPathHash or shortPathHash instead, nameHash will be the same as shortNameHash for legacy")]
 		public FsmInt nameHash;
+		
+		#if UNITY_5
+		[UIHint(UIHint.Variable)]
+		[Tooltip("The full path hash for this state.")]
+		public FsmInt fullPathHash;
+		
+		[UIHint(UIHint.Variable)]
+		[Tooltip("The name Hash. Doest not include the parent layer's name")]
+		public FsmInt shortPathHash;
+		#endif
 		
 		[UIHint(UIHint.Variable)]
 		[Tooltip("The layer's tag hash")]
@@ -65,6 +75,12 @@ namespace HutongGames.PlayMaker.Actions
 			
 			name = null;
 			nameHash = null;
+			
+			#if UNITY_5
+			fullPathHash = null;
+			shortPathHash = null;
+			#endif
+			
 			tagHash = null;
 			length = null;
 			normalizedTime = null;
@@ -74,7 +90,7 @@ namespace HutongGames.PlayMaker.Actions
 			
 			everyFrame = false;
 		}
-
+		
 		public override void OnEnter()
 		{
 			// get the animator component
@@ -107,7 +123,7 @@ namespace HutongGames.PlayMaker.Actions
 				Finish();
 			}
 		}
-	
+		
 		public override void OnUpdate()
 		{
 			if (_animatorProxy == null)
@@ -129,8 +145,15 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				AnimatorStateInfo _info = _animator.GetCurrentAnimatorStateInfo(layerIndex.Value);
 				
-				
+				#if UNITY_5
+				fullPathHash.Value = _info.fullPathHash;
+				shortPathHash.Value = _info.shortNameHash;
+				nameHash.Value = _info.shortNameHash;
+				#else
 				nameHash.Value = _info.nameHash;
+				#endif
+				
+				
 				if (!name.IsNone)
 				{
 					name.Value = _animator.GetLayerName(layerIndex.Value);	
@@ -147,7 +170,7 @@ namespace HutongGames.PlayMaker.Actions
 				}
 				
 				
-			
+				
 			}
 		}
 		

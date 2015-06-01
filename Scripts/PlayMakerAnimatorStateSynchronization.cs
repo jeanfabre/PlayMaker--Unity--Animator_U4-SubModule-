@@ -24,44 +24,44 @@ using HutongGames.PlayMaker;
 public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 {
 	public int LayerIndex = 0;
-
+	
 	public PlayMakerFSM Fsm;
-
+	
 	public bool EveryFrame = true;
 	
 	public bool debug = false;
-
-
+	
+	
 	Animator animator;
 	int lastState;
 	int lastTransition;
-
+	
 	Dictionary<int,FsmState> fsmStateLUT;
-
+	
 	void Start()
 	{
 		animator = this.GetComponent<Animator>();
-
+		
 		if (Fsm!=null)
 		{
 			string layerName = animator.GetLayerName(LayerIndex);
 			fsmStateLUT = new Dictionary<int, FsmState>();
-
+			
 			foreach (FsmState state in Fsm.Fsm.States)
 			{
 				string fsmStateName = state.Name;
-
+				
 				RegisterHash(state.Name,state);
-
+				
 				if (!fsmStateName.StartsWith(layerName+"."))
 				{
 					RegisterHash(layerName+"."+state.Name,state);
 				}
 			}
-
+			
 		}
 	}
-
+	
 	void RegisterHash(string key,FsmState state)
 	{
 		int hash = Animator.StringToHash(key);
@@ -69,7 +69,7 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 		
 		if ( debug) Debug.Log ("registered "+key+" ->"+hash );
 	}
-
+	
 	void Update()
 	{
 		if (EveryFrame)
@@ -77,26 +77,26 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 			Synchronize();
 		}
 	}
-
+	
 	public void Synchronize()
 	{
 		if (animator==null || Fsm==null)
 		{
 			return;
 		}
-
+		
 		bool hasSwitchedState = false;
-
+		
 		if ( animator.IsInTransition(LayerIndex))
 		{
 			AnimatorTransitionInfo _transitionInfo = animator.GetAnimatorTransitionInfo(LayerIndex);
 			int _currentTransition = _transitionInfo.nameHash;
 			int _currentTransitionUserName = animator.GetAnimatorTransitionInfo(LayerIndex).userNameHash;
-
+			
 			if (lastTransition != _currentTransition)
 			{
 				if (debug) Debug.Log("is in transition");
-
+				
 				// look for a username based transition
 				if ( fsmStateLUT.ContainsKey(_currentTransitionUserName) )
 				{ 
@@ -109,7 +109,7 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 						hasSwitchedState = true;
 					}
 				}
-
+				
 				// set state
 				if (!hasSwitchedState && fsmStateLUT.ContainsKey(_currentTransition) )
 				{
@@ -122,20 +122,24 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 						hasSwitchedState = true;
 					}
 				}
-
-
+				
+				
 				if (!hasSwitchedState && debug) Debug.LogWarning("Fsm is missing animator transition name or username for hash:"+_currentTransition);
-
+				
 				// record change
 				lastTransition = _currentTransition;
 			}
-
+			
 		}
-
+		
 		// if we have not succeeded with any potential transitions, we look for states
 		if (!hasSwitchedState)
 		{
+			#if UNITY_5
+			int _currentState = animator.GetCurrentAnimatorStateInfo(LayerIndex).fullPathHash;
+			#else
 			int _currentState = animator.GetCurrentAnimatorStateInfo(LayerIndex).nameHash;
+			#endif
 			if (lastState != _currentState)
 			{
 				if (debug) Debug.Log("Net state switch");
@@ -157,9 +161,9 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 				lastState = _currentState;
 			}
 		}
-
+		
 	}
-
+	
 	void SwitchState(Fsm fsm, FsmState state)
 	{
 		MethodInfo switchState = fsm.GetType().GetMethod("SwitchState", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -168,9 +172,9 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 			switchState.Invoke(fsm , new object[] { state });
 		}
 	}
-
+	
 }
 
-	
+
 
 

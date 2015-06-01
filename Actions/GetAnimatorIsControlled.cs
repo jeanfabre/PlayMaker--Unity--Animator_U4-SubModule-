@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 ||  UNITY_4_6
+	#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_5
 	[Obsolete("This action is obsolete. Use mask and layers to control subset of transforms in a skeleton")]
 	#endif
 	
 	[ActionCategory("Animator")]
-
+	
 	[Tooltip("Returns true if a transform is controlled by the Animator. Can also send events")]
 	public class GetAnimatorIsControlled: FsmStateAction
 	{
-#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 ||  UNITY_4_6
-
-#else
+		#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_5
+		
+		#else
 		[RequiredField]
 		[CheckForComponent(typeof(Animator))]
 		[Tooltip("The Target. An Animator component is required")]
@@ -77,7 +77,7 @@ namespace HutongGames.PlayMaker.Actions
 				Finish();
 				return;
 			}
-				
+			
 			_transform = targetGo.transform;
 			
 			DoCheckIsControlled();
@@ -85,15 +85,15 @@ namespace HutongGames.PlayMaker.Actions
 			Finish();
 			
 		}
-	
+		
 		void DoCheckIsControlled()
 		{		
 			if (_animator==null)
 			{
 				return;
 			}
-
-
+			
+			
 			bool _isControlled = _animator.IsControlled(_transform);
 			isControlled.Value = _isControlled;
 			
@@ -104,7 +104,7 @@ namespace HutongGames.PlayMaker.Actions
 				Fsm.Event(isNotControlledEvent);
 			}
 		}
-
-#endif
+		
+		#endif
 	}
 }

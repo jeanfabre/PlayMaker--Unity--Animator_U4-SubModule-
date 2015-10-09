@@ -5,6 +5,7 @@ using HutongGames.PlayMaker;
 
 using HutongGames.PlayMaker.Ecosystem.Utils;
 
+#if UNITY_5
 public class PlayMakerStateMachineBehaviorProxy : StateMachineBehaviour {
 
 	public bool debug;
@@ -67,3 +68,4 @@ public class PlayMakerStateMachineBehaviorProxy : StateMachineBehaviour {
 	*/
 
 }
+#endif

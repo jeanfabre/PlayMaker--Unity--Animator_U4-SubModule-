@@ -8,7 +8,7 @@ using UnityEngine;
 
 using HutongGames.PlayMaker.Ecosystem.Utils;
 
-
+#if UNITY_5
 [CustomEditor(typeof(PlayMakerStateMachineBehaviorProxy))]
 public class PlayMakerStateMachineBehaviorProxyInspector : UnityEditor.Editor {
 
@@ -71,3 +71,4 @@ public class PlayMakerStateMachineBehaviorProxyInspector : UnityEditor.Editor {
   */
 
 }
+#endif

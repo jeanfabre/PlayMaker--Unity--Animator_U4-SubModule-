@@ -1,5 +1,9 @@
 #PlayMaker Animator Change log
 
+###1.1.2
+**Update:** Update to latest PlayMaker Utils  
+**Fix:** Fixed `PlayMakerAnimatorStateSynchronization` compatibility with PlayMaker 1.8  
+
 ###1.1.1
 **New:** *PlayMakerStateMachineBehaviorProxy* to be dropped directly onto an Animator State to fire events when animator state is entered or exited  
 

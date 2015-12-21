@@ -150,8 +150,7 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 					if (Fsm.Fsm.ActiveState!=_fsmState)
 					{
 						SwitchState(Fsm.Fsm,_fsmState);
-						// Only in 1.8
-						//Fsm.Fsm.SwitchState(_fsmState);
+
 					}
 				}else{
 					if (debug) Debug.LogWarning("Fsm is missing animator state hash:"+_currentState);
@@ -166,7 +165,7 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 	
 	void SwitchState(Fsm fsm, FsmState state)
 	{
-		MethodInfo switchState = fsm.GetType().GetMethod("SwitchState", BindingFlags.NonPublic | BindingFlags.Instance);
+		MethodInfo switchState = fsm.GetType().GetMethod("SwitchState", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 		if (switchState!=null)
 		{
 			switchState.Invoke(fsm , new object[] { state });

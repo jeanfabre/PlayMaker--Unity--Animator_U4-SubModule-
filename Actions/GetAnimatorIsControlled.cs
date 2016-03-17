@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace HutongGames.PlayMaker.Actions
 {
-	#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_5
+	#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5
 	[Obsolete("This action is obsolete. Use mask and layers to control subset of transforms in a skeleton")]
 	#endif
 	
@@ -14,7 +14,7 @@ namespace HutongGames.PlayMaker.Actions
 	[Tooltip("Returns true if a transform is controlled by the Animator. Can also send events")]
 	public class GetAnimatorIsControlled: FsmStateAction
 	{
-		#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_5
+		#if UNITY_4_3 || UNITY_4_4 || UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5
 		
 		#else
 		[RequiredField]

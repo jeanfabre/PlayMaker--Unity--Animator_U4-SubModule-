@@ -1,5 +1,9 @@
 #PlayMaker Animator Change log
 
+###1.1.3
+**Fix:** fixed all actions using OnAnimatorIK to not firing warning ( can't use Update anymore)  
+**Update:** updated PlayMaker Utils submodule  
+
 ###1.1.2
 **Update:** Update to latest PlayMaker Utils  
 **Fix:** Fixed `PlayMakerAnimatorStateSynchronization` compatibility with PlayMaker 1.8  

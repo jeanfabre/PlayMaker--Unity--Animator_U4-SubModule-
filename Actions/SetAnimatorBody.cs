@@ -75,14 +75,8 @@ namespace HutongGames.PlayMaker.Actions
 			{
 				_transform = _target.transform;
 			}
-			
-			
-			DoSetBody();
-			
-			if (!everyFrame) 
-			{
-				Finish();
-			}
+
+		
 		}
 	
 		public void OnAnimatorIKEvent(int layer)
@@ -90,6 +84,12 @@ namespace HutongGames.PlayMaker.Actions
 			if (_animatorProxy!=null)
 			{
 				DoSetBody();
+
+				if (!everyFrame) 
+				{
+					_animatorProxy.OnAnimatorIKEvent -= OnAnimatorIKEvent;
+					Finish();
+				}
 			}
 		}	
 		
@@ -98,6 +98,11 @@ namespace HutongGames.PlayMaker.Actions
 			if (_animatorProxy==null)
 			{
 				DoSetBody();
+
+				if (!everyFrame) 
+				{
+					Finish();
+				}
 			}
 		}
 

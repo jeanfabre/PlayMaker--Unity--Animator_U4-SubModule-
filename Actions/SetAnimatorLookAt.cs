@@ -96,12 +96,7 @@ namespace HutongGames.PlayMaker.Actions
 			}
 			
 			
-			DoSetLookAt();
-			
-			if (!everyFrame) 
-			{
-				Finish();
-			}
+	
 		}
 	
 		public void OnAnimatorIKEvent(int layerIndex)
@@ -109,6 +104,12 @@ namespace HutongGames.PlayMaker.Actions
 			if (_animatorProxy!=null)
 			{
 				DoSetLookAt();
+
+				if (!everyFrame) 
+				{
+					_animatorProxy.OnAnimatorIKEvent -= OnAnimatorIKEvent;
+					Finish();
+				}
 			}
 		}	
 		
@@ -117,6 +118,11 @@ namespace HutongGames.PlayMaker.Actions
 			if (_animatorProxy==null)
 			{
 				DoSetLookAt();
+				
+				if (!everyFrame) 
+				{
+					Finish();
+				}
 			}
 		}
 		

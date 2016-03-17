@@ -93,19 +93,21 @@ namespace HutongGames.PlayMaker.Actions
 			}
 			
 			
-			DoSetIKGoal();
-			
-			if (!everyFrame) 
-			{
-				Finish();
-			}
+
+
 		}
 	
 		public void OnAnimatorIKEvent(int layer)
 		{
 			if (_animatorProxy!=null)
 			{
+				_animatorProxy.OnAnimatorIKEvent -= OnAnimatorIKEvent;
 				DoSetIKGoal();
+
+				if (!everyFrame) 
+				{
+					Finish();
+				}
 			}
 		}	
 		

@@ -149,7 +149,11 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 					FsmState _fsmState = fsmStateLUT[_currentState];
 					if (Fsm.Fsm.ActiveState!=_fsmState)
 					{
-						SwitchState(Fsm.Fsm,_fsmState);
+						#if PLAYMAKER_1_8
+							Fsm.Fsm.SwitchState(_fsmState);
+						#else
+							SwitchState(Fsm.Fsm,_fsmState);
+						#endif
 
 					}
 				}else{
@@ -162,7 +166,8 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 		}
 		
 	}
-	
+	#if !PLAYMAKER_1_8
+
 	void SwitchState(Fsm fsm, FsmState state)
 	{
 		MethodInfo switchState = fsm.GetType().GetMethod("SwitchState", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -171,6 +176,7 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 			switchState.Invoke(fsm , new object[] { state });
 		}
 	}
+	#endif
 	
 }
 

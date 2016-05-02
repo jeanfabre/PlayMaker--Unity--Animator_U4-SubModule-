@@ -1,7 +1,14 @@
 #PlayMaker Animator Change log
 
+###1.1.4  
+**Released:** 02/05/16  
+
+**Improvement:** Added EveryFrame Option to animatorPlay to animate time  
+
+**Update:** Update to latest PlayMaker Utils submodule  
+
 ###1.1.3
-**Fix:** fixed all actions using OnAnimatorIK to not firing warning ( can't use Update anymore)  
+**Fix:** fixed all actions using OnAnimatorIK to not fire warning ( can't use Update anymore)  
 **Update:** updated PlayMaker Utils submodule  
 
 ###1.1.2

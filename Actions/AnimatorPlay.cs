@@ -22,6 +22,9 @@ namespace HutongGames.PlayMaker.Actions
 		[Tooltip("The normalized time at which the state will play")]
 		public FsmFloat normalizedTime;
 
+		[Tooltip("Repeat every frame.")]
+		public bool everyFrame;
+
 		private Animator _animator;
 
 		public override void Reset()
@@ -30,6 +33,7 @@ namespace HutongGames.PlayMaker.Actions
 			stateName = null;
 			layer = new FsmInt(){UseVariable=true};
 			normalizedTime = new FsmFloat(){UseVariable=true};
+			everyFrame = false;
 		}
 		
 		public override void OnEnter()
@@ -45,6 +49,23 @@ namespace HutongGames.PlayMaker.Actions
 			
 			_animator = go.GetComponent<Animator>();
 			
+			DoPlay();
+
+			if (!everyFrame)
+			{
+				Finish();
+			}
+			
+		}
+
+		public override void OnUpdate ()
+		{
+			DoPlay();
+		}
+
+		void DoPlay()
+		{
+
 			if (_animator!=null)
 			{
 				int _layer = layer.IsNone?-1:layer.Value;
@@ -54,8 +75,6 @@ namespace HutongGames.PlayMaker.Actions
 				_animator.Play(stateName.Value,_layer,_normalizedTime);
 			}
 
-			Finish();
-			
 		}
 
 

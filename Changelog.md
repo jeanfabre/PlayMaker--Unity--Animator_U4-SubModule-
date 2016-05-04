@@ -1,7 +1,12 @@
 #PlayMaker Animator Change log
 
+###1.1.5
+**Released:** 04/05/16  
+
+**Fix:** Fixed `PlayMakerAnimatorStateSynchronization` compatibility with PlayMaker 1.8 in Unity 5+
+
 ###1.1.4  
-**Released:** 02/05/16  
+**Released:** 04/05/16  
 
 **Improvement:** Added EveryFrame Option to animatorPlay to animate time  
 

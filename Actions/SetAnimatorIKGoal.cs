@@ -101,11 +101,11 @@ namespace HutongGames.PlayMaker.Actions
 		{
 			if (_animatorProxy!=null)
 			{
-				_animatorProxy.OnAnimatorIKEvent -= OnAnimatorIKEvent;
 				DoSetIKGoal();
 
 				if (!everyFrame) 
 				{
+					_animatorProxy.OnAnimatorIKEvent -= OnAnimatorIKEvent;
 					Finish();
 				}
 			}

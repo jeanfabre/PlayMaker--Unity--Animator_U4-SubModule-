@@ -1,5 +1,10 @@
 #PlayMaker Animator Change log
 
+###1.1.6
+**Released:** 05/05/16  
+
+**Fix:** Fixed `SetAnimatorIKGoal` don't know it got corrupted..
+
 ###1.1.5
 **Released:** 04/05/16  
 

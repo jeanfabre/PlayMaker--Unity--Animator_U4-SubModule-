@@ -1,5 +1,12 @@
 #PlayMaker Animator Change log
 
+###2.0.0
+**Released:** 19/09/17
+ 
+**Update:** Update to latest PlayMaker Utils submodule   
+ 
+**Update:** Remove all actions from package, PlayMaker officially include them now. Only the proxies are left.  
+
 ###1.1.6
 **Released:** 05/05/16  
 

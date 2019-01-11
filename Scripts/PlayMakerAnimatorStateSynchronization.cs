@@ -156,7 +156,7 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 
 	void SwitchState(Fsm fsm, FsmState state)
 	{
-		#if PLAYMAKER_1_8
+		#if PLAYMAKER_1_8_OR_NEWER
 			fsm.SwitchState(state);
 		#else
 		MethodInfo switchState = fsm.GetType().GetMethod("SwitchState", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);

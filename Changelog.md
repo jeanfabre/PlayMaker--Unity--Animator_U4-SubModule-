@@ -7,6 +7,8 @@
 
 **Fixed**: fixed handling of Unity versions Compile time symbols
 
+**Fixed**: fixed handling of PlayMaker versions Compile time symbols
+
 ###2.0.0
 **Released:** 19/09/17
  

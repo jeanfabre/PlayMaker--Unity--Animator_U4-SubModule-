@@ -1,5 +1,12 @@
 #PlayMaker Animator Change log
 
+###2.1.0
+**Released:** 11/01/19
+ 
+**Update:** Update to latest PlayMaker Utils submodule   
+
+**Fixed**: fixed handling of Unity versions Compile time symbols
+
 ###2.0.0
 **Released:** 19/09/17
  

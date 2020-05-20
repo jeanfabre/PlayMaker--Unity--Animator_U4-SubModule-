@@ -1,5 +1,11 @@
 #PlayMaker Animator Change log
 
+###2.2.0
+**Released:** 20/05/120
+ 
+**Update:** Update to latest PlayMaker Utils submodule  
+**Update:** Added fallback state option to  PlayMakerAnimatorStateSynchronization 
+
 ###2.1.0
 **Released:** 11/01/19
  

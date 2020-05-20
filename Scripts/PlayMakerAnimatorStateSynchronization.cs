@@ -1,4 +1,4 @@
-﻿// (c) Copyright HutongGames, LLC 2010-2015. All rights reserved.
+﻿// (c) Copyright HutongGames, LLC 2010-2020. All rights reserved.
 /*
  inspired by Paul Hayes asset: https://github.com/paulhayes/AnimatorStateMachineUtil
 
@@ -26,6 +26,8 @@ public class PlayMakerAnimatorStateSynchronization : MonoBehaviour
 	public int LayerIndex = 0;
 	
 	public PlayMakerFSM Fsm;
+	
+	public string fallbackState;
 	
 	public bool EveryFrame = true;
 	
